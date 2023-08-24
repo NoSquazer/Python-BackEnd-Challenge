@@ -7,11 +7,11 @@ from pydantic import BaseModel, EmailStr, UUID4, Field
 
 
 class MonthResume(BaseModel):
-    active_clients: int
-    percentage_active_change: float
-    signups_per_month: int
-    percentage_signup_change: float
-    cancellations_per_month: int
-    percentage_cancellation_change: float
-    inactivations_per_month: int
-    percentage_inactivation_change: float
+    active_clients: Optional[int] = 0
+    active_members_percentage_change_prev_month: Optional[int] = 0
+    new_clients: Optional[int] = 0
+    new_clients_porcentage_change_prev_month: Optional[int] = 0
+    deregistrations: Optional[int] = 0
+    deregistrations_porcentage_change_prev_month: Optional[int] = 0
+    inactivations_without_termination: Optional[int] = 0
+    inactivations_without_termination_percentage_change_prev_month: Optional[int] = 0
