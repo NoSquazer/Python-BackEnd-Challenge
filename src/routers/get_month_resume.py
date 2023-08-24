@@ -1,14 +1,14 @@
-from typing import List
-from fastapi import APIRouter, Depends, Body
+# Python
 from datetime import datetime
+
+# FastAPI
+from fastapi import APIRouter, Depends, Body
 from fastapi.responses import JSONResponse
-from bson.json_util import dumps
 
-from src.services.month_resume_service import month_resume_service
-
-from src.dependencies import get_db
-
+# SrcUtilities
 from src.utils.schemas import MonthResume
+from src.services.month_resume_service import month_resume_service
+from src.dependencies import get_db
 
 
 get_month_resume_router = APIRouter()
