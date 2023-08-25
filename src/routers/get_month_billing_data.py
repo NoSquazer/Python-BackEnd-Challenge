@@ -6,31 +6,29 @@ from fastapi import APIRouter, Depends, Query
 from fastapi.responses import JSONResponse
 
 # SrcUtilities
-from src.utils.schemas import MonthResume
-from src.services.month_resume_service import month_resume_service
+from src.utils.schemas import MonthBillingData
+from src.services.month_billing_data_service import month_billing_data_service
 from src.dependencies import get_db
 
 
-get_month_resume_router = APIRouter()
+get_month_billing_data_router = APIRouter()
 
 
-@get_month_resume_router.get("/resume", response_model=MonthResume)
-def get_month_resume(
+@get_month_billing_data_router.get("/billing", response_model=MonthBillingData)
+def get_month_billing_data(
     month: str = Query(..., description="Month in MM-YYYY format"),
     company: str = Query(..., description="Business name or identifier"),
     db=Depends(get_db),
 ) -> JSONResponse:
     try:
         month_date = datetime.strptime(month, "%m-%Y")
-        if month_date >= datetime(2023, 7, 1) or month_date <= datetime(2021, 12, 1):
+        if month_date >= datetime(2023, 7, 1):
             return JSONResponse(
-                content={
-                    "error": "Month cannot be before January 2022 or after July 2023."
-                },
+                content={"error": "Month cannot be after July 2023."},
                 status_code=400,
             )
 
-        response_data = month_resume_service.get_month_resume_data(
+        response_data = month_billing_data_service.get_month_billing_data(
             db=db, company=company, month=month_date
         )
 
