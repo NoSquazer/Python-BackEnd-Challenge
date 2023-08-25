@@ -26,3 +26,12 @@ class MonthBillingData(BaseModel):
     deregistrations_porcentage_change_prev_month: Optional[int] = 0
     inactivations_without_termination: Optional[int] = 0
     inactivations_without_termination_percentage_change_prev_month: Optional[int] = 0
+
+
+class MonthBilling(BaseModel):
+    total_revenue_current: Optional[int] = 0
+    total_revenue_variation: Optional[int] = 0
+    recurrences_revenue_current: Optional[int] = 0
+    recurrences_revenue_variation: Optional[int] = 0
+    altas_revenue_current: Optional[int] = 0
+    ltas_revenue_variation: Optional[int] = 0

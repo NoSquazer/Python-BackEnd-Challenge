@@ -6,16 +6,16 @@ from fastapi import APIRouter, Depends, Query
 from fastapi.responses import JSONResponse
 
 # SrcUtilities
-from src.utils.schemas import MonthBilling
-from src.services.month_summary_service import month_summary_service
+from src.utils.schemas import MonthBillingData
+from src.services.month_billing_data_service import month_billing_data_service
 from src.dependencies import get_db
 
 
-get_month_billing_data_router = APIRouter()
+get_month_graph_data_router = APIRouter()
 
 
-@get_month_billing_data_router.get("/billing-data", response_model=MonthBilling)
-def get_month_summary(
+@get_month_graph_data_router.get("/graph-data", response_model=MonthBillingData)
+def get_month_billing_data(
     month: str = Query(..., description="Month in MM-YYYY format"),
     company: str = Query(..., description="Business name or identifier"),
     db=Depends(get_db),
@@ -28,7 +28,7 @@ def get_month_summary(
                 status_code=400,
             )
 
-        response_data = month_summary_service.get_billing_metrics(
+        response_data = month_billing_data_service.get_month_billing_data(
             db=db, company=company, month=month_date
         )
 

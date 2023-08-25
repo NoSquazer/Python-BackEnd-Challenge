@@ -1,15 +1,14 @@
 # Python
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
-from typing import List
 
 # SrcUtilities
-from src.utils.month_resume_utils import calculate_porcentage_change
+from src.utils.utils import calculate_porcentage
 
 
 class Services:
     @staticmethod
-    def _clients_count(db, filter_query: dict) -> List:
+    def _clients_count(db, filter_query: dict) -> int:
         clients = db.clientes.find(filter_query)
         clients_count = len(list(clients))
         return clients_count
@@ -28,7 +27,7 @@ class Services:
     def get_active_clients(cls, db, company: str, month: datetime) -> int:
         end_date = cls._get_month_range(month=month)
 
-        active_subscriber_count = cls._clients_count(
+        active_clients_count = cls._clients_count(
             db,
             {
                 "status": "activo",
@@ -36,7 +35,7 @@ class Services:
             },
         )
 
-        return active_subscriber_count
+        return active_clients_count
 
     @classmethod
     def get_active_members_porcentage_change_prev_month(
@@ -57,7 +56,7 @@ class Services:
 
         current_month_clients_count = cls.get_active_clients(db, company, month)
 
-        porcentage_active_change = calculate_porcentage_change(
+        porcentage_active_change = calculate_porcentage(
             previous_month_clients_count, current_month_clients_count
         )
 
@@ -105,7 +104,7 @@ class Services:
             db, company=company, month=month
         )
 
-        new_clients_change_porcentage = calculate_porcentage_change(
+        new_clients_change_porcentage = calculate_porcentage(
             previous_new_clients_count, current_new_clients_count
         )
 
@@ -154,7 +153,7 @@ class Services:
             db, company=company, month=month
         )
 
-        deregistrations_clients_porcentage = calculate_porcentage_change(
+        deregistrations_clients_porcentage = calculate_porcentage(
             previous_month_deregistrations_clients_count,
             current_month_deregistrations_clients_count,
         )
@@ -206,11 +205,9 @@ class Services:
             cls.get_inactivations_without_termination(db, company=company, month=month)
         )
 
-        inactivations_without_termination_change_porcentage = (
-            calculate_porcentage_change(
-                previous_inactivations_without_termination_count,
-                current_inactivations_without_termination_count,
-            )
+        inactivations_without_termination_change_porcentage = calculate_porcentage(
+            previous_inactivations_without_termination_count,
+            current_inactivations_without_termination_count,
         )
 
         return inactivations_without_termination_change_porcentage
