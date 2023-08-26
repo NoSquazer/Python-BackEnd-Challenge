@@ -1,5 +1,5 @@
 # Python
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange
 from bson import ObjectId

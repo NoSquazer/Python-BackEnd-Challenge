@@ -1,7 +1,6 @@
 # Python
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import List
-from calendar import monthrange
 from dateutil.relativedelta import relativedelta
 from bson import ObjectId
 
