@@ -62,4 +62,4 @@ class Services:
         return data_list
 
 
-month_billing_data_service = Services
+month_billing_service = Services

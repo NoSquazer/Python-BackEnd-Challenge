@@ -41,7 +41,7 @@ def close_db_connection():
     db.close()
 
 
-app.include_router(api_router, prefix="/database")
+app.include_router(api_router, prefix="/api")
 
 
 @app.get("/", response_class=RedirectResponse)

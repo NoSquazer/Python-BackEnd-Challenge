@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, Query
 from fastapi.responses import JSONResponse
 
 # SrcUtilities
-from src.utils.schemas import MonthBillingData
+from src.utils.schemas import MonthPorcentageMetrics
 from src.services.month_porcentage_metrics_service import (
     month_porcentage_metrics_service,
 )
@@ -17,7 +17,7 @@ get_month_porcentage_metrics_router = APIRouter()
 
 
 @get_month_porcentage_metrics_router.get(
-    "/porcentage-metrics", response_model=MonthBillingData
+    "/porcentage-metrics", response_model=MonthPorcentageMetrics
 )
 def get_month_porcentage_metrics(
     month: str = Query(..., description="Month in MM-YYYY format"),

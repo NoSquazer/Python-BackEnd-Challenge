@@ -123,18 +123,18 @@ class Services:
     @classmethod
     def get_billing_metrics(cls, db, company: str, month: datetime) -> dict:
         billing_metrics = {
-            "total_revenue": cls.get_total_revenue(db, company, month),
+            "total_revenue_current": cls.get_total_revenue(db, company, month),
             "total_revenue_variation": cls.get_total_altas_revenue_variation(
                 db, company, month
             ),
-            "total_recurrence_revenue": cls.get_total_recurrence_revenue(
+            "recurrences_revenue_current": cls.get_total_recurrence_revenue(
                 db, company, month
             ),
-            "total_recurrence_variation": cls.get_total_recurrence_revenue_variation(
+            "recurrences_revenue_variation": cls.get_total_recurrence_revenue_variation(
                 db, company, month
             ),
-            "total_altas_revenue": cls.get_total_altas_revenue(db, company, month),
-            "total_altas_variation": cls.get_total_altas_revenue_variation(
+            "altas_revenue_current": cls.get_total_altas_revenue(db, company, month),
+            "altas_revenue_variation": cls.get_total_altas_revenue_variation(
                 db, company, month
             ),
         }
@@ -142,4 +142,4 @@ class Services:
         return billing_metrics
 
 
-month_summary_service = Services
+month_billing_summary = Services
