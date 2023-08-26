@@ -22,9 +22,11 @@ def get_month_billing_data(
 ) -> JSONResponse:
     try:
         month_date = datetime.strptime(month, "%m-%Y")
-        if month_date >= datetime(2023, 7, 1):
+        if month_date >= datetime(2023, 7, 1) or month_date <= datetime(2021, 12, 1):
             return JSONResponse(
-                content={"error": "Month cannot be after July 2023."},
+                content={
+                    "error": "Month cannot be before January 2022 or after July 2023."
+                },
                 status_code=400,
             )
 

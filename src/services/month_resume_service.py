@@ -24,7 +24,7 @@ class Services:
         return previous_month
 
     @classmethod
-    def get_active_clients(cls, db, company: str, month: datetime) -> int:
+    def get_active_clients(cls, db, month: datetime) -> int:
         end_date = cls._get_month_range(month=month)
 
         active_clients_count = cls._clients_count(
@@ -39,7 +39,7 @@ class Services:
 
     @classmethod
     def get_active_members_porcentage_change_prev_month(
-        cls, db, company: str, month: datetime
+        cls, db, month: datetime
     ) -> int:
         previous_month = cls._get_previous_month_range(month)
 
@@ -54,7 +54,7 @@ class Services:
             },
         )
 
-        current_month_clients_count = cls.get_active_clients(db, company, month)
+        current_month_clients_count = cls.get_active_clients(db, month)
 
         porcentage_active_change = calculate_porcentage(
             previous_month_clients_count, current_month_clients_count
@@ -63,7 +63,7 @@ class Services:
         return porcentage_active_change
 
     @classmethod
-    def get_new_clients(cls, db, company: str, month: datetime):
+    def get_new_clients(cls, db, month: datetime):
         end_date = cls._get_month_range(month)
         new_clients_count = cls._clients_count(
             db,
@@ -80,9 +80,7 @@ class Services:
         return new_clients_count
 
     @classmethod
-    def get_new_clients_porcentage_change_prev_month(
-        cls, db, company: str, month: datetime
-    ) -> int:
+    def get_new_clients_porcentage_change_prev_month(cls, db, month: datetime) -> int:
         previous_month = cls._get_previous_month_range(month)
 
         previous_new_clients_count = cls._clients_count(
@@ -100,9 +98,7 @@ class Services:
             },
         )
 
-        current_new_clients_count = cls.get_new_clients(
-            db, company=company, month=month
-        )
+        current_new_clients_count = cls.get_new_clients(db, month=month)
 
         new_clients_change_porcentage = calculate_porcentage(
             previous_new_clients_count, current_new_clients_count
@@ -111,7 +107,7 @@ class Services:
         return new_clients_change_porcentage
 
     @classmethod
-    def get_deregistrations(cls, db, company: str, month: datetime) -> int:
+    def get_deregistrations(cls, db, month: datetime) -> int:
         end_date = cls._get_month_range(month)
 
         deregistrations_clients_count = cls._clients_count(
@@ -130,7 +126,7 @@ class Services:
 
     @classmethod
     def get_deregistrations_porcentage_change_prev_month(
-        cls, db, company: str, month: datetime
+        cls, db, month: datetime
     ) -> int:
         previous_month = cls._get_previous_month_range(month)
 
@@ -150,7 +146,7 @@ class Services:
         )
 
         current_month_deregistrations_clients_count = cls.get_deregistrations(
-            db, company=company, month=month
+            db, month=month
         )
 
         deregistrations_clients_porcentage = calculate_porcentage(
@@ -161,9 +157,7 @@ class Services:
         return deregistrations_clients_porcentage
 
     @classmethod
-    def get_inactivations_without_termination(
-        cls, db, company: str, month: datetime
-    ) -> int:
+    def get_inactivations_without_termination(cls, db, month: datetime) -> int:
         end_date = cls._get_month_range(month)
 
         inactivations_without_termination_count = cls._clients_count(
@@ -182,7 +176,7 @@ class Services:
 
     @classmethod
     def get_inactivations_without_termination_porcentage_change_prev_month(
-        cls, db, company: str, month: datetime
+        cls, db, month: datetime
     ) -> int:
         previous_month = cls._get_previous_month_range(month)
 
@@ -202,7 +196,7 @@ class Services:
         )
 
         current_inactivations_without_termination_count = (
-            cls.get_inactivations_without_termination(db, company=company, month=month)
+            cls.get_inactivations_without_termination(db, month=month)
         )
 
         inactivations_without_termination_change_porcentage = calculate_porcentage(
@@ -213,32 +207,28 @@ class Services:
         return inactivations_without_termination_change_porcentage
 
     @classmethod
-    def get_month_resume_data(cls, db, company: str, month: datetime) -> dict:
+    def get_month_resume_data(cls, db, month: datetime) -> dict:
         return {
-            "active_clients": cls.get_active_clients(
-                db=db, company=company, month=month
-            ),
+            "active_clients": cls.get_active_clients(db=db, month=month),
             "active_members_porcentage_change_prev_month": cls.get_active_members_porcentage_change_prev_month(
-                db=db, company=company, month=month
+                db=db, month=month
             ),
-            "new_clients": cls.get_new_clients(db=db, company=company, month=month),
+            "new_clients": cls.get_new_clients(db=db, month=month),
             "new_clients_porcentage_change_prev_month": cls.get_new_clients_porcentage_change_prev_month(
-                db=db, company=company, month=month
+                db=db, month=month
             ),
-            "deregistrations": cls.get_deregistrations(
-                db=db, company=company, month=month
-            ),
+            "deregistrations": cls.get_deregistrations(db=db, month=month),
             "deregistrations_porcentage_change_prev_month": cls.get_deregistrations_porcentage_change_prev_month(
-                db=db, company=company, month=month
+                db=db, month=month
             ),
             "inactivations_without_termination": cls.get_inactivations_without_termination(
-                db=db, company=company, month=month
+                db=db, month=month
             ),
             "inactivations_without_termination_porcentage_change_prev_month": cls.get_inactivations_without_termination_porcentage_change_prev_month(
-                db=db, company=company, month=month
+                db=db, month=month
             ),
             "active_members_porcentage_change_prev_month": cls.get_active_members_porcentage_change_prev_month(
-                db=db, company=company, month=month
+                db=db, month=month
             ),
         }
 

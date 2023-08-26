@@ -31,7 +31,7 @@ def get_month_resume(
             )
 
         response_data = month_resume_service.get_month_resume_data(
-            db=db, company=company, month=month_date
+            db=db, month=month_date
         )
 
         return JSONResponse(content=response_data)

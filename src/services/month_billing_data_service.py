@@ -1,6 +1,7 @@
 # Python
 from datetime import datetime, timedelta
 from calendar import monthrange
+from bson import ObjectId
 
 
 class Services:
@@ -24,6 +25,7 @@ class Services:
             {
                 "date_created": {"$gt": start_date, "$lt": end_date},
                 "source": {"$in": ["checkout", "checkout3", "checkout_miclub"]},
+                "merchant_id": ObjectId(company),
             },
         )
         return altas_count
@@ -37,6 +39,7 @@ class Services:
             {
                 "date_created": {"$gt": start_date, "$lt": end_date},
                 "source": {"$in": ["recurring_charges", "recurring_miclub"]},
+                "merchant_id": ObjectId(company),
             },
         )
         return recurrency_count
