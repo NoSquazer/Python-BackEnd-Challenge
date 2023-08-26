@@ -19,7 +19,7 @@ get_month_porcentage_metrics_router = APIRouter()
 @get_month_porcentage_metrics_router.get(
     "/porcentage-metrics", response_model=MonthBillingData
 )
-def get_month_billing_data(
+def get_month_porcentage_metrics(
     month: str = Query(..., description="Month in MM-YYYY format"),
     company: str = Query(..., description="Business name or identifier"),
     db=Depends(get_db),
