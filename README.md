@@ -1,6 +1,6 @@
 # Project Name
 
-Short description or introduction to your project.
+Python Backend Challenge
 
 ## Tech Stack
 
@@ -11,14 +11,16 @@ Short description or introduction to your project.
 ## Installation
 
 1. Clone the repository:
+   git clone [https://github.com/NoSquazer/Python-BackEnd-Challenge.git]
 
 2. Navigate to the project directory:
+   cd your-repo-name
 
 3. Install dependencies:
+   pip install -r requirements.txt
 
-4. Set up environment variables (if applicable):
-
-5. Run the application:
+4. Run the application:
+   uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
 ## API Routes
 

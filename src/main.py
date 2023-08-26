@@ -47,6 +47,3 @@ app.include_router(api_router, prefix="/api")
 @app.get("/", response_class=RedirectResponse)
 async def docs():
     return RedirectResponse(url="/docs")
-
-
-# uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
