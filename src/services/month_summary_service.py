@@ -25,9 +25,7 @@ class Services:
         )
 
         total_revenue = sum(
-            doc["charges_detail"]["final_price"]
-            for doc in revenue_docs
-            if isinstance(doc["charges_detail"]["final_price"], (int, float))
+            doc["charges_detail"]["final_price"] for doc in revenue_docs
         )
 
         return total_revenue
