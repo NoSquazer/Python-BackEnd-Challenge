@@ -19,7 +19,7 @@ get_month_billing_summary_router = APIRouter()
 )
 def get_month_billing_data(
     month: str = Query(..., description="Month in MM-YYYY format"),
-    company: str = Query(..., description="Business name or identifier"),
+    company: str = Query(..., description="Business identifier"),
     db=Depends(get_db),
 ) -> JSONResponse:
     try:

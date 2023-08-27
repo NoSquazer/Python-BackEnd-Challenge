@@ -21,7 +21,7 @@ get_month_porcentage_metrics_router = APIRouter()
 )
 def get_month_porcentage_metrics(
     month: str = Query(..., description="Month in MM-YYYY format"),
-    company: str = Query(..., description="Business name or identifier"),
+    company: str = Query(..., description="Business identifier"),
     db=Depends(get_db),
 ) -> JSONResponse:
     try:

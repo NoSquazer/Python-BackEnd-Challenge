@@ -17,7 +17,7 @@ get_month_resume_router = APIRouter()
 @get_month_resume_router.get("/resume", response_model=MonthResume)
 def get_month_resume(
     month: str = Query(..., description="Month in MM-YYYY format"),
-    company: str = Query(..., description="Business name or identifier"),
+    company: str = Query(..., description="Business identifier"),
     db=Depends(get_db),
 ) -> JSONResponse:
     try:
