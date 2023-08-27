@@ -13,7 +13,7 @@ Technologies used:
 ## Installation
 
 ```bash
-git clone git@github.com:huntekapp/api.git
+git clone https://github.com/NoSquazer/Python-BackEnd-Challenge.git
 ```
 
 ### Create .env file
